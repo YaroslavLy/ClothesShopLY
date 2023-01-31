@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_graph"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.clothesshop.ui.login.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_tabsFragment"
+            app:destination="@id/tabsFragmentGraph" />
+        <action
+            android:id="@+id/action_loginFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/tabsFragmentGraph"
+        android:name="com.example.clothesshop.ui.tabs.TabsFragment"
+        android:label="TabsFragment" >
+        <action
+            android:id="@+id/action_tabsFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_tabsFragmentGraph_to_orderFragment"
+            app:destination="@id/orderFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.example.clothesshop.ui.signup.SignUpFragment"
+        android:label="fragment_sign_up"
+        tools:layout="@layout/fragment_sign_up" >
+        <action
+            android:id="@+id/action_signUpFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/orderFragment"
+        android:name="com.example.clothesshop.ui.order.OrderFragment"
+        android:label="fragment_order"
+        tools:layout="@layout/fragment_order" >
+        <action
+            android:id="@+id/action_orderFragment_to_orderPaymentFragment"
+            app:destination="@id/orderPaymentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/orderPaymentFragment"
+        android:name="com.example.clothesshop.ui.order.OrderPaymentFragment"
+        android:label="fragment_order_payment"
+        tools:layout="@layout/fragment_order_payment" >
+        <action
+            android:id="@+id/action_orderPaymentFragment_to_orderSummaryFragment"
+            app:destination="@id/orderSummaryFragment" />
+        <argument
+            android:name="orderAdres"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/orderSummaryFragment"
+        android:name="com.example.clothesshop.ui.order.OrderSummaryFragment"
+        android:label="fragment_order_summary"
+        tools:layout="@layout/fragment_order_summary" >
+        <argument
+            android:name="delivery"
+            app:argType="string" />
+        <argument
+            android:name="payType"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_orderSummaryFragment_to_tabsFragmentGraph"
+            app:destination="@id/tabsFragmentGraph" />
+        <argument
+            android:name="address"
+            app:argType="string" />
+    </fragment>
+</navigation>

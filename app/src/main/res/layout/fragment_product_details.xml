@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/container2"
+    tools:context=".ui.product.ProductDetailsFragment"
+    android:padding="16dp"
+    >
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?android:attr/selectableItemBackground"
+        android:orientation="vertical">
+
+
+        <ImageView
+            android:id="@+id/imageview"
+            android:layout_width="match_parent"
+            android:layout_height="450dp"
+            android:layout_gravity="top"
+            tools:src="@tools:sample/backgrounds/scenic" />
+
+        <TextView
+            android:id="@+id/textName"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="start"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="25dp"
+            android:layout_weight="2"
+            android:text="text Name and main text"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/details"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageview" />
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="start"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="2"
+            android:text="100.9 zł"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:textColor="@color/green"
+            app:layout_constraintBottom_toTopOf="@+id/details"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageview" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Dodaj Do Koszyka"
+            android:layout_marginBottom="18dp"
+            />
+
+        <TextView
+            android:id="@+id/description"
+            android:textSize="17dp"
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Opis"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="8dp"
+            >
+        <TextView
+            android:id="@+id/details1"
+            android:textSize="17dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="TextView"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textName"
+
+            />
+
+        </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="8dp"
+        >
+    <ImageView
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="17"
+        app:srcCompat="@drawable/ic_baseline_circle_24"
+        />
+        <TextView
+            android:id="@+id/details2"
+            android:textSize="17dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="TextView"
+            />
+    </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="8dp"
+            >
+            <ImageView
+                android:padding="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="17"
+                app:srcCompat="@drawable/ic_baseline_circle_24"
+                />
+            <TextView
+                android:id="@+id/details3"
+                android:textSize="17dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="TextView"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="8dp"
+            >
+            <ImageView
+                android:padding="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="17"
+                app:srcCompat="@drawable/ic_baseline_circle_24"
+                />
+            <TextView
+                android:id="@+id/details4"
+                android:textSize="17dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="TextView"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="8dp"
+            >
+            <ImageView
+                android:padding="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="17"
+                app:srcCompat="@drawable/ic_baseline_circle_24"
+                />
+            <TextView
+                android:id="@+id/details5"
+                android:textSize="17dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="TextView"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="8dp"
+            >
+            <ImageView
+                android:padding="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="17"
+                app:srcCompat="@drawable/ic_baseline_circle_24"
+                />
+            <TextView
+                android:id="@+id/details6"
+                android:textSize="17dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="TextView"
+                />
+        </LinearLayout>
+        <TextView
+            android:id="@+id/details7"
+            android:textSize="17dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="TextView"
+            />
+        <TextView
+            android:id="@+id/details8"
+            android:textSize="17dp"
+            android:background="@color/colorGray"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="TextView"
+            />
+        <TextView
+            android:id="@+id/details9"
+            android:textSize="17dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="TextView"
+            />
+
+    </LinearLayout>
+
+</ScrollView>
+
+
+
+
