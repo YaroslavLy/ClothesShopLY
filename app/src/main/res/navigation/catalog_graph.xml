@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/catalog_graph"
+    app:startDestination="@id/typeFragment2">
+
+    <fragment
+        android:id="@+id/typeFragment2"
+        android:name="com.example.clothesshop.ui.type.TypeFragment"
+        android:label="fragment_type_list"
+        tools:layout="@layout/fragment_type_list" >
+        <action
+            android:id="@+id/action_typeFragment2_to_productFragment3"
+            app:destination="@id/productFragment3"
+            app:popEnterAnim="@anim/side_in"
+            app:popExitAnim="@anim/side_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/productFragment3"
+        android:name="com.example.clothesshop.ui.product.ProductFragment"
+        android:label="fragment_product"
+        tools:layout="@layout/fragment_product" >
+        <action
+            android:id="@+id/action_productFragment3_to_productDetailsFragment4"
+            app:destination="@id/productDetailsFragment4"
+            app:enterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+        <argument
+            android:name="path"
+            app:argType="string"
+            android:defaultValue="none" />
+    </fragment>
+    <fragment
+        android:id="@+id/productDetailsFragment4"
+        android:name="com.example.clothesshop.ui.product.ProductDetailsFragment"
+        android:label="fragment_product_details"
+        tools:layout="@layout/fragment_product_details" >
+        <argument
+            android:name="id"
+            app:argType="string"
+            android:defaultValue="null" />
+        <argument
+            android:name="path"
+            app:argType="string"
+            android:defaultValue="none" />
+    </fragment>
+</navigation>

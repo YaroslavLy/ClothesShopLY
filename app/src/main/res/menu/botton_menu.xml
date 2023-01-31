@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:title="Główna"
+        android:id="@+id/home_graph"
+        android:icon="@drawable/ic_baseline_other_houses_24"
+
+
+        />
+    <item
+        android:title="Katalog"
+        android:id="@+id/catalog_graph"
+        android:icon="@drawable/ic_baseline_dashboard_24"
+
+
+        />
+    <item
+        android:title="Koszyk"
+        android:id="@+id/basket_graph"
+        android:icon="@drawable/ic_baseline_shopping_cart_24"
+
+
+        />
+
+    <item
+        android:title="Więcej"
+        android:id="@+id/more_graph"
+        android:icon="@drawable/ic_baseline_menu_24"
+
+
+        />
+
+
+</menu>

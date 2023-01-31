@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.order.OrderSummaryFragment"
+
+
+    >
+
+
+    <ProgressBar
+        android:id="@+id/seekBar"
+        style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:clickable="false"
+        android:indeterminate="false"
+        android:max="4"
+        android:progress="3"
+        android:splitTrack="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="14dp"
+        android:layout_marginEnd="14dp"
+        />
+
+    <LinearLayout
+        android:id="@+id/text_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/seekBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:orientation="horizontal"
+
+        >
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Koszyk"
+            android:textSize="10dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Dane"
+            android:textSize="10dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Dostawa i płatność"
+
+            android:textSize="10dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Podsumowanie"
+            android:textSize="10dp"
+            android:textColor="@color/green"
+            android:gravity="right"
+            />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_marginTop="55dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="35dp"
+        android:layout_marginEnd="35dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/invoice"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/name_product"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Product f" />
+
+
+                <TextView
+                    android:id="@+id/price_product"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:text="0.0 Zł" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="3dp"
+                >
+
+                <TextView
+                    android:id="@+id/name_delivery"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Delivery f" />
+
+
+                <TextView
+                    android:id="@+id/price_delivery"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:text="0,0 Zł" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/cash_price_add"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="3dp"
+                >
+
+                <TextView
+                    android:id="@+id/name_delivery_cash"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Koszt usługi 'Przy odbiorze' " />
+
+
+                <TextView
+                    android:id="@+id/price_delivery_cash"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:text="25,0 Zł" />
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="3dp"
+                >
+
+                <TextView
+                    android:id="@+id/descriptions_delivery"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="left"
+                    android:text="Suma"
+                    android:textSize="15dp"
+                    />
+
+
+                <TextView
+                    android:id="@+id/price_sum_delivery"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:textColor="@color/green"
+                    android:textSize="15dp"
+                    android:text="0,0 Zł" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/payment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="35dp"
+            android:layout_marginEnd="35dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/payment_get"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/local_summary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Płatność gotówką. Przygotuj odliczoną kwotę. Kurier lub lokalizacja może nie mieć terminala."
+                    android:visibility="gone"
+                    />
+
+                <TextView
+                    android:id="@+id/blik_summary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Podaj Kod BliK."
+                    android:gravity="center"
+                    android:visibility="gone"
+                    />
+
+                <EditText
+                    android:id="@+id/blik_summary_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLength="6"
+                    android:text="123456"
+                    android:gravity="center"
+                    android:inputType="numberSigned"
+                    android:visibility="gone"/>
+
+
+
+
+                <EditText
+                    android:visibility="gone"
+                    android:id="@+id/cardNumberEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginBottom="-0.25dp"
+                    android:background="@drawable/bg_card_number_edit_text"
+                    android:drawableEnd="@drawable/ic_card_number"
+                    android:hint="Card number"
+                    android:inputType="phone"
+                    android:padding="16dp"
+                    android:textColor="@android:color/black"
+                    android:textColorHint="@color/colorGray"
+                    android:textSize="14sp"
+                     />
+
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="-0.25dp"
+                    android:orientation="horizontal"
+                    >
+
+                    <EditText
+                        android:id="@+id/cardDateEditText"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_marginEnd="-0.25dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_card_date_edit_text"
+                        android:drawableEnd="@drawable/ic_card_date"
+                        android:hint="MM/YY"
+                        android:inputType="date"
+                        android:padding="16dp"
+                        android:textColor="@android:color/black"
+                        android:textColorHint="@color/colorGray"
+                        android:textSize="14sp"
+                         />
+
+                    <EditText
+                        android:id="@+id/cardCVCEditText"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="-0.25dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_card_cvc_edit_text"
+                        android:drawableEnd="@drawable/ic_card_cvc"
+                        android:hint="CVC"
+                        android:inputType="number"
+                        android:padding="16dp"
+                        android:textColor="@android:color/black"
+                        android:textColorHint="@color/colorGray"
+                        android:textSize="14sp"
+                         />
+                </LinearLayout>
+
+
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/payment_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/button_accept"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Akceptuj"
+                    android:gravity="bottom" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+
+    tools:context=".ui.order.OrderPaymentFragment">
+
+
+    <ProgressBar
+        android:id="@+id/seekBar"
+        style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:clickable="false"
+        android:indeterminate="false"
+        android:max="4"
+        android:progress="2"
+        android:splitTrack="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="14dp"
+        android:layout_marginEnd="14dp"
+        />
+
+    <LinearLayout
+        android:id="@+id/text_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/seekBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:orientation="horizontal"
+
+        >
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Koszyk"
+            android:textSize="10dp"            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Dane"
+            android:textSize="10dp"            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Dostawa i płatność"
+            android:textColor="@color/green"
+            android:textSize="10dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Podsumowanie"
+            android:textSize="10dp"
+            android:gravity="right"
+            />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_bar"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/info_post"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="55dp"
+            android:text="Wybierz dostawę Twój adres: "
+            android:textSize="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <RadioGroup
+            android:id="@+id/post_options"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checkedButton="@id/locale_radio_button"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <RadioButton
+                android:id="@+id/courier_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Kurier – InPost, UPS, FedEx (bezpłatnie)">
+
+            </RadioButton>
+
+            <Spinner
+                android:id="@+id/courier_radio_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:visibility="gone">
+
+            </Spinner>
+
+            <RadioButton
+                android:id="@+id/parcel_locker"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Paczkomaty 24/7 (bezpłatnie)" />
+
+            <Spinner
+                android:id="@+id/parcel_locker_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:text="Paczkomat InPost "
+                android:visibility="gone" />
+
+
+            <RadioButton
+                android:id="@+id/locale_radio_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Odbiór w punkcie - Poczta Polska, Żabka, Ruch, Orlen i inne (bezpłatnie)" />
+
+            <Spinner
+                android:id="@+id/locale_select_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:text="Wybierz punkt odbioru"
+                tools:layout_editor_absoluteX="1dp"
+                tools:layout_editor_absoluteY="550dp"
+
+                />
+
+
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/info_payment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="15dp"
+            android:text="Płatność"
+            android:textSize="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/post_options" />
+
+        <RadioGroup
+            android:id="@+id/payment_options"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:checkedButton="@id/pay_radio_button_card"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/info_payment">
+
+            <RadioButton
+                android:id="@+id/pay_radio_button_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Karta płatnicza online" />
+
+            <TextView
+                android:id="@+id/pay_card_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:text="Zapłać szybkim przelewem" />
+
+            <RadioButton
+                android:id="@+id/pay_radio_button_bgik"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Bgik" />
+
+            <TextView
+                android:id="@+id/pay_bgik_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:text="Płatność Bgik."
+                android:visibility="gone"
+
+                />
+
+
+            <Switch
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:text="Dokonać  płatności"
+                android:visibility="gone" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:text="Płatność gotówką. Przygotuj odliczoną kwotę dla kuriera."
+                android:visibility="gone"
+
+                />
+
+            <RadioButton
+                android:id="@+id/pay_radio_button_in_place"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Przy odbiorze (25,00 zł)"
+
+                >
+
+            </RadioButton>
+
+            <TextView
+                android:id="@+id/pay_in_place_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:text="Płatność gotówką."
+                android:visibility="gone"
+
+                />
+
+
+        </RadioGroup>
+
+        <Button
+
+            android:id="@+id/next"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="start"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="35dp"
+            android:layout_weight="0"
+            android:text="Dalej"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/payment_options" />
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

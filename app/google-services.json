@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "874262438737",
+    "firebase_url": "https://clothingstore-767bf-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "clothingstore-767bf",
+    "storage_bucket": "clothingstore-767bf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:874262438737:android:d91093d4c01299058ae970",
+        "android_client_info": {
+          "package_name": "com.example.clothesshop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "874262438737-1enf952enfl7b1slt497evi0jogiog4c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9Wb7rQ3wKuNtpNbdLqRJX17tKOZYM2yI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "874262438737-1enf952enfl7b1slt497evi0jogiog4c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
