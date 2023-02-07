@@ -1,20 +1,19 @@
-package com.example.clothesshop.data
+package com.example.clothesshop.data.type
 
 import android.util.Log
-import com.example.clothesshop.utils.Constants
+import com.example.clothesshop.data.Resource
 import com.example.clothesshop.model.Type
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
+import com.example.clothesshop.utils.Constants
+import com.google.firebase.database.*
 import kotlinx.coroutines.channels.awaitClose
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.callbackFlow
+import javax.inject.Inject
 
-// todo #9 create repo and source
-class TypeRepository(val path: String) {
 
-    fun getTypes(path: String): Flow<Resource<Type>> = callbackFlow {
+class TypeSourceImp @Inject constructor() :TypeSource {
+
+    override fun getTypes(path: String): Flow<Resource<Type>> = callbackFlow {
         var fbDB: DatabaseReference
         Log.i("taaaag", path)
         if (path.equals("all")) {

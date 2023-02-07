@@ -1,4 +1,4 @@
-package com.example.clothesshop.data
+package com.example.clothesshop.data.userdata
 
 import android.content.Context
 import dagger.hilt.android.qualifiers.ApplicationContext

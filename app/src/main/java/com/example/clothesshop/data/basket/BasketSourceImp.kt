@@ -2,7 +2,7 @@ package com.example.clothesshop.data.basket
 
 import android.util.Log
 import com.example.clothesshop.data.Result
-import com.example.clothesshop.data.UserDataSource
+import com.example.clothesshop.data.userdata.UserDataSource
 import com.example.clothesshop.model.Product
 import com.example.clothesshop.model.ProductBasket
 import com.google.firebase.database.DataSnapshot
@@ -34,7 +34,7 @@ class BasketSourceImp @Inject constructor(private val userDataSource : UserDataS
                             name = item.name,
                             price = item.price,
                             code = item.code,
-                            in_bascked = item.in_bascked,
+                            inBasked = item.inBasked,
                             type = item.type,
                             description = item.description
                         )
@@ -55,20 +55,21 @@ class BasketSourceImp @Inject constructor(private val userDataSource : UserDataS
         }
     }
 
-    override fun getCountProductsInBasket(): Flow<Int> = callbackFlow {
+    override fun getCountProductsInBasket(): Flow<Result<Int>> = callbackFlow {
         val userId = userDataSource.getUid()
-        if (userId == null) trySend(0).isFailure
+
+        if (userId == null) trySend(Result.Error(Exception("User not valid"))).isFailure
+
         val fbDB = FirebaseDatabase.getInstance().getReference("Basket/$userId")
         val postListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val count = dataSnapshot.childrenCount
 
-                trySend(count.toInt()).isSuccess
+                trySend(Result.Success<Int>(count.toInt())).isSuccess
             }
 
-            // todo #1 add send error
             override fun onCancelled(databaseError: DatabaseError) {
-                //trySend(Result.Error(databaseError.toException())).isFailure
+                trySend(Result.Error(databaseError.toException())).isFailure
             }
 
         }

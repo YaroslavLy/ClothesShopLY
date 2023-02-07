@@ -1,19 +1,20 @@
-package com.example.clothesshop.data
+package com.example.clothesshop.data.category
 
 import android.util.Log
-import com.example.clothesshop.utils.Constants
+import com.example.clothesshop.data.Resource
 import com.example.clothesshop.model.Category
+import com.example.clothesshop.utils.Constants
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.coroutines.channels.awaitClose
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.callbackFlow
+import javax.inject.Inject
 
-// todo #5 create repo and source
-class CategoryRepository {
-
-    fun getCategories() : Flow<Resource<Category>> = callbackFlow  {
+class CategorySourceImp @Inject constructor() : CategorySource {
+    override fun getCategories(): Flow<Resource<Category>> = callbackFlow  {
         val fbDB = FirebaseDatabase.getInstance().getReference(Constants.COLLECTION_CATEGORY)
         val postListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -21,9 +22,9 @@ class CategoryRepository {
                     var item = dataSn.getValue(Category::class.java)
                     if (item != null) {
                         val category=Category(
-                            url_image = item.url_image,
-                            name_folder = item.name_folder,
-                            name_pl = item.name_pl
+                            urlImage = item.urlImage,
+                            nameFolder = item.nameFolder,
+                            namePl = item.namePl
                         )
                         trySend(Resource.Success<Category>(category)).isSuccess
                     }

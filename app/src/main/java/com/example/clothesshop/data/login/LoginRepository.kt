@@ -2,6 +2,9 @@ package com.example.clothesshop.data.login
 
 import com.example.clothesshop.data.Result
 import com.example.clothesshop.model.LoggedInUser
+import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.callbackFlow
 import javax.inject.Inject
 
 
@@ -22,16 +25,9 @@ class LoginRepository @Inject constructor(private val dataSource: LoginDataSourc
         dataSource.logout()
     }
 
-    suspend fun login(username: String, password: String): Result<LoggedInUser> {
-        // handle login
-        val result = dataSource.login(username, password)
+    fun login(username: String, password: String): Flow<Result<LoggedInUser>> =
+         dataSource.login(username, password)
 
-        if (result is Result.Success) {
-            setLoggedInUser(result.data as LoggedInUser)
-        }
-
-        return result
-    }
 
     private fun setLoggedInUser(loggedInUser: LoggedInUser) {
         this.user = loggedInUser

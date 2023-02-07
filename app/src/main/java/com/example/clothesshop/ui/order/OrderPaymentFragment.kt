@@ -14,8 +14,9 @@ import com.example.clothesshop.databinding.FragmentOrderBinding
 import com.example.clothesshop.databinding.FragmentOrderPaymentBinding
 import com.example.clothesshop.ui.basket.BasketFragmentDirections
 import com.example.clothesshop.utils.Constants
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class OrderPaymentFragment : Fragment() {
 
     private var _binding: FragmentOrderPaymentBinding? = null

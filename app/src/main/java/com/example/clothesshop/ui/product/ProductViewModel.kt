@@ -4,18 +4,19 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.clothesshop.data.ProductRepository
+import com.example.clothesshop.data.product.ProductRepository
 import com.example.clothesshop.data.Resource
 import com.example.clothesshop.data.Result
 import com.example.clothesshop.model.Product
 import com.example.clothesshop.model.ProductBasket
-import kotlinx.coroutines.flow.collect
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-
-class ProductViewModel(val productRepository: ProductRepository) : ViewModel() {
+@HiltViewModel
+class ProductViewModel @Inject constructor(private val productRepository: ProductRepository) : ViewModel() {
 
     private val _productForm = MutableLiveData<Product>()
     val productFormState: LiveData<Product> = _productForm

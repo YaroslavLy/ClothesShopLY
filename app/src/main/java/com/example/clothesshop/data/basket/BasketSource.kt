@@ -9,7 +9,7 @@ interface BasketSource {
 
     fun getProducts(): Flow<Result<ProductBasket>>
 
-    fun getCountProductsInBasket():Flow<Int>
+    fun getCountProductsInBasket():Flow<Result<Int>>
 
     fun removeProductInBasket(productBasket: ProductBasket)
 }

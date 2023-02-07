@@ -12,6 +12,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
@@ -21,12 +22,13 @@ import com.example.clothesshop.databinding.FragmentSignUpBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-
+@AndroidEntryPoint
 class SignUpFragment : Fragment() {
 
 
@@ -34,7 +36,7 @@ class SignUpFragment : Fragment() {
     private var _binding: FragmentSignUpBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var signUpViewModel: SignUpViewModel
+    private val signUpViewModel: SignUpViewModel by viewModels()
     private val job = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + job)
 
@@ -62,11 +64,7 @@ class SignUpFragment : Fragment() {
         val dataError = binding.tex
         val buttonEnd= binding.doLog
 
-        signUpViewModel =
-            ViewModelProvider(
-                this,
-                SignUpViewModelFactory()
-            )[SignUpViewModel::class.java]
+
 
 
         val signupButton = binding.signup

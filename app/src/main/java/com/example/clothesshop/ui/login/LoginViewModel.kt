@@ -18,7 +18,8 @@ import kotlinx.coroutines.*
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginViewModel @Inject constructor(private val loginRepository: LoginRepository) : ViewModel() {
+class LoginViewModel @Inject constructor(private val loginRepository: LoginRepository) :
+    ViewModel() {
 
     private val _loginForm = MutableLiveData<LoginFormState>()
     val loginFormState: LiveData<LoginFormState> = _loginForm
@@ -26,28 +27,27 @@ class LoginViewModel @Inject constructor(private val loginRepository: LoginRepos
     private val _loginResult = MutableLiveData<LoginResult>()
     val loginResult: LiveData<LoginResult> = _loginResult
 
-    private val job = Job()
-    private val uiScope = CoroutineScope(Dispatchers.Main + job)
-
-    suspend fun login(username: String, password: String) {
-        // can be launched in a separate asynchronous job
-        uiScope.launch(Dispatchers.IO) {
-            val result = loginRepository.login(username, password)
-
-            if (result is Result.Success) {
-                val t = result.data as  LoggedInUser
-                _loginResult.postValue(
-                    LoginResult(success = LoggedInUserView(displayName = t.displayName))
-                )
-            } else {
-                _loginResult.postValue(LoginResult(error = R.string.login_failed))
+    fun login(username: String, password: String) {
+        viewModelScope.launch {
+            loginRepository.login(username, password).collect { result ->
+                when (result) {
+                    is Result.Success -> {
+                        val t = result.data as LoggedInUser
+                        _loginResult.postValue(
+                            LoginResult(success = LoggedInUserView(displayName = t.displayName))
+                        )
+                    }
+                    is Result.Error -> {
+                        _loginResult.postValue(LoginResult(error = R.string.login_failed))
+                    }
+                }
             }
         }
     }
 
     //todo move code inside to repo
     private lateinit var auth: FirebaseAuth
-    fun loginAnonymous(){
+    fun loginAnonymous() {
         viewModelScope.launch {
 
             auth = Firebase.auth

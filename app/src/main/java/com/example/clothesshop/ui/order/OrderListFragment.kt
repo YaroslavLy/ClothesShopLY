@@ -8,14 +8,17 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import com.example.clothesshop.R
-import com.example.clothesshop.data.OrderRepository
+import com.example.clothesshop.data.order.OrderRepository
 import com.example.clothesshop.model.OrderView
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class OrderListFragment : Fragment() {
 
-    private lateinit var orderViewModel: OrderViewModel
+    private val orderViewModel: OrderViewModel by activityViewModels()
     private var data = ArrayList<OrderView>()
 
     private var columnCount = 1
@@ -34,7 +37,7 @@ class OrderListFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_order_item_list, container, false)
 
-        orderViewModel = OrderViewModel( OrderRepository())
+        //orderViewModel = OrderViewModel( OrderRepository())
 
 
         orderViewModel.getOrders()

@@ -1,8 +1,9 @@
 package com.example.clothesshop.model
 
-// todo #10 rename (use new class in data module)
+import com.google.firebase.database.PropertyName
+
 data class Category(
-    val url_image: String? = "",
-    val name_folder: String? = "",
-    val name_pl: String? = ""
+    @get:PropertyName("url_image") @set:PropertyName("url_image") var urlImage: String? = "",
+    @get:PropertyName("name_folder") @set:PropertyName("name_folder") var nameFolder: String? = "",
+    @get:PropertyName("name_pl") @set:PropertyName("name_pl") var namePl: String? = ""
 )

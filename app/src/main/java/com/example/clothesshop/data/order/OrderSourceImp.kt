@@ -1,6 +1,7 @@
-package com.example.clothesshop.data
+package com.example.clothesshop.data.order
 
 import android.util.Log
+import com.example.clothesshop.data.Result
 import com.example.clothesshop.model.Order
 import com.example.clothesshop.model.OrderView
 import com.google.firebase.auth.FirebaseAuth
@@ -13,27 +14,13 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
+import javax.inject.Inject
 
-// todo #6 create repo and source
-class OrderRepository {
+class OrderSourceImp @Inject constructor(): OrderSource {
 
     private lateinit var auth: FirebaseAuth
 
-    fun save(order: Order) {
-        auth = Firebase.auth
-        val user= auth.currentUser
-        val userId = user?.uid
-        val v = FirebaseDatabase.getInstance().getReference("Orders/$userId")
-        v.push().setValue(order)
-
-        val firebaseDatabase = FirebaseDatabase.getInstance().getReference("Basket/$userId")
-        for (productBasket in order.products!!) {
-            productBasket.id?.let { firebaseDatabase.child(it).removeValue() }
-        }
-
-    }
-
-    fun getOrders(path: String): Flow<Result<OrderView>> = callbackFlow {
+    override fun getOrders(path: String): Flow<Result<OrderView>> = callbackFlow {
         auth = Firebase.auth
         val user= auth.currentUser
         val userId = user?.uid
@@ -75,5 +62,16 @@ class OrderRepository {
         }
     }
 
+    override fun save(order: Order) {
+        auth = Firebase.auth
+        val user= auth.currentUser
+        val userId = user?.uid
+        val v = FirebaseDatabase.getInstance().getReference("Orders/$userId")
+        v.push().setValue(order)
 
+        val firebaseDatabase = FirebaseDatabase.getInstance().getReference("Basket/$userId")
+        for (productBasket in order.products!!) {
+            productBasket.id?.let { firebaseDatabase.child(it).removeValue() }
+        }
+    }
 }

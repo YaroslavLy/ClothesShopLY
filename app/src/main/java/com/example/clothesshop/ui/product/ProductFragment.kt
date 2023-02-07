@@ -10,6 +10,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -30,11 +31,13 @@ import com.example.clothesshop.model.ProductBasket
 import com.example.clothesshop.ui.tabs.TabsFragmentDirections
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ProductFragment : Fragment() {
 
     private var columnCount = 2
-    private lateinit var productViewModel: ProductViewModel
+    private val productViewModel: ProductViewModel by viewModels()
     private var data = ArrayList<Product>()
 
     private lateinit var auth: FirebaseAuth
@@ -69,11 +72,11 @@ class ProductFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val args: ProductFragmentArgs by navArgs()
         val type =  args.path
-        productViewModel =
-            ViewModelProvider(
-                this,
-                ProductViewModelFactory()
-            )[ProductViewModel::class.java]
+//        productViewModel =
+//            ViewModelProvider(
+//                this,
+//                ProductViewModelFactory()
+//            )[ProductViewModel::class.java]
 
 
         val recyclerView = binding.list

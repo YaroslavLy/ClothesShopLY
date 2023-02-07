@@ -1,13 +1,15 @@
 package com.example.clothesshop.model
 
+import com.google.firebase.database.PropertyName
 
-// todo #13 rename (use new class in data module)
+
+
 data class Product(
     val image: String? = "",
     val name: String? = "",
     val price: String? = "",
     val code: String? = "",
-    val in_bascked: Boolean? = false,
+    @get:PropertyName("in_bascked") @set:PropertyName("in_bascked") var inBasked: Boolean? = false,
     val type: String? = "",
     val description: String? = ""
 ){
@@ -17,7 +19,7 @@ data class Product(
             name,
             price,
             code,
-            in_bascked,
+           inBasked,
             type,
             description)
     }
