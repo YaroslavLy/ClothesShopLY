@@ -17,12 +17,16 @@ class OrderViewModel @Inject constructor (
     private var orderRepository: OrderRepository
 ) : ViewModel() {
 
+    //todo #2 move state payment and use data binding
+
     private val _ordersForm = MutableLiveData<OrderView>()
     val ordersFormState: LiveData<OrderView> = _ordersForm
 
     fun saveOrder(order: Order) {
         orderRepository.save(order)
     }
+
+
 
     fun getOrders(){
         viewModelScope.launch {

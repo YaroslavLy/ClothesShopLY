@@ -12,7 +12,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.clothesshop.R
 import com.example.clothesshop.databinding.FragmentBasketBinding
 import com.example.clothesshop.model.ProductBasket
 import com.example.clothesshop.ui.tabs.TabsFragmentDirections
@@ -75,10 +77,11 @@ class BasketFragment : Fragment() {
         }
 
         binding.addProduct.setOnClickListener {
-            // todo navigate to category graph
+            findNavController().clearBackStack(R.navigation.home_graph)
+            findNavController().navigate(R.id.action_basketFragment2_to_home_graph)
+            //todo select bottom menu active category after navigate
         }
 
-        //todo move check if anonymous in repo
         binding.order.setOnClickListener {
 
             val navHostFragment = parentFragment as NavHostFragment?

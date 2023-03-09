@@ -19,7 +19,9 @@ import com.example.clothesshop.ui.tabs.TabsFragmentDirections
 
 
 interface ProductBasketActionListener {
+
     fun onProductDelete(productBasket: ProductBasket)
+
     fun onProductDetails(productBasket: ProductBasket)
 }
 
@@ -50,16 +52,7 @@ class BasketRecyclerViewAdapter(private val actionListener: ProductBasketActionL
         RecyclerView.ViewHolder(binding.root) {
 
             fun bind(productBasket: ProductBasket){
-
-                GlideApp.with(binding.imageview.context)
-                    .load(productBasket.image)
-                    .error(R.drawable.ic_baseline_autorenew_24)
-                    .apply(RequestOptions.bitmapTransform( RoundedCorners(14)))
-                    .into(binding.imageview)
-
-                binding.textName.text = productBasket.name
-                binding.textPrice.text = productBasket.price
-
+                binding.productBasket = productBasket
                 binding.buttonBasketDelete.setOnClickListener {
                     actionListener.onProductDelete(productBasket)
                 }

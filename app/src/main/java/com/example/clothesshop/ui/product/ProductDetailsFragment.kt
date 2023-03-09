@@ -29,6 +29,8 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class ProductDetailsFragment:Fragment(R.layout.fragment_product_details) {
 
+    //todo #3 create check use recycler view
+
     private var _binding:FragmentProductDetailsBinding? = null
     private val binding get() = _binding!!
 
@@ -78,6 +80,7 @@ class ProductDetailsFragment:Fragment(R.layout.fragment_product_details) {
 
     }
 
+    //todo #6 remove
     private fun updateUiWithProduct(product: Product, view: View) {
         Log.i("Ok22", product.code.toString())
         Log.i("TAG0101", product.toString())

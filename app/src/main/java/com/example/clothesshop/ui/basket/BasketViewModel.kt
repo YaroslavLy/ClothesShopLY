@@ -1,7 +1,5 @@
 package com.example.clothesshop.ui.basket
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.clothesshop.data.basket.BasketRepository
@@ -9,6 +7,7 @@ import com.example.clothesshop.data.Result
 import com.example.clothesshop.model.ProductBasket
 import com.example.clothesshop.utils.parsers.PriceParser
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -17,11 +16,6 @@ import javax.inject.Inject
 class BasketViewModel @Inject constructor(private val basketRepository: BasketRepository) :
     ViewModel() {
 
-    //todo #21 add state loading, error
-    //todo #22 add databinding to list ProductBasket
-
-//    private val _basketProductForm = MutableLiveData<ProductBasket>()
-//    val basketProductFormState: LiveData<ProductBasket> = _basketProductForm
 
     private val _productsBasketStateFlow = MutableStateFlow<List<ProductBasket>>(emptyList())
     val productsBasketState = _productsBasketStateFlow.asStateFlow()
@@ -32,41 +26,39 @@ class BasketViewModel @Inject constructor(private val basketRepository: BasketRe
     private val _visibleButton = MutableStateFlow(false)
     val visibleButton = _visibleButton.asStateFlow()
 
-
+//todo move from init code add add state
     init {
         viewModelScope.launch {
             basketRepository.getProducts().collect { resource ->
                 when (resource) {
                     is Result.Success -> {
+
+                        //delay(1000)
                         val productBasket = resource.data as ProductBasket
                         if(!_productsBasketStateFlow.value.contains(productBasket)) {
                             _productsBasketStateFlow.value += productBasket
-
                             _priceStateFlow.value = sumPricesBasketProducts()
                         }
                         _visibleButton.value = _productsBasketStateFlow.value.isNotEmpty()
+
+
                     }
                     is Result.Error -> {
-                        //Log.w(TAG, resource.error!!)
                     }
                 }
             }
         }
     }
 
-    fun getProductsFromBasket()//: Flow<Result<ProductBasket>> //= basketRepository.getProducts()
+    fun getProductsFromBasket()
     {
         viewModelScope.launch {
             basketRepository.getProducts().collect { resource ->
                 when (resource) {
                     is Result.Success -> {
-                        //val t = resource.data as ProductBasket
-                        //val li = _productsBasketStateFlow.value
-
                         _productsBasketStateFlow.value += (resource.data as ProductBasket)
                     }
                     is Result.Error -> {
-                      //Log.w(TAG, resource.error!!)
                     }
                 }
             }
@@ -89,6 +81,7 @@ class BasketViewModel @Inject constructor(private val basketRepository: BasketRe
         for (s in _productsBasketStateFlow.value) {
             s.price?.let { listPrice.add(it) }
         }
+
         return PriceParser.sumPrise(listPrice)
     }
 

@@ -16,10 +16,14 @@ import javax.inject.Inject
 class CategoryViewModel @Inject constructor(private val categoryRepository: CategoryRepository) :
     ViewModel() {
 
+
+    //todo #1 use state flow
     private val _categoryForm = MutableLiveData<Category>()
     val categoryFormState: LiveData<Category> = _categoryForm
 
+    //todo move from init code add add state
     init {
+        //example not use collect
         categoryRepository.getCategories()
             .onEach { resource ->
                 when (resource) {

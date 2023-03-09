@@ -19,6 +19,8 @@ import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 
+
+//todo add many module
 @Module
 @InstallIn(SingletonComponent::class)
 abstract class UserDataModule {

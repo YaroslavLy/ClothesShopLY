@@ -8,6 +8,8 @@ import androidx.lifecycle.viewModelScope
 import com.example.clothesshop.model.Type
 import kotlinx.coroutines.launch
 
+
+//todo remove
 class MainViewModel : ViewModel() {
 
     private val _categoryForm = MutableLiveData<String>()

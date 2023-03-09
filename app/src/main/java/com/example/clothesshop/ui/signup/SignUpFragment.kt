@@ -83,7 +83,7 @@ class SignUpFragment : Fragment() {
                     signupButton,
                     false
                 )
-
+//todo move
                 uiScope.launch(Dispatchers.IO) {
                     signUpViewModel.signUp(
                         emailEditText.text.toString(),
@@ -167,6 +167,8 @@ class SignUpFragment : Fragment() {
                 )
             }
         }
+
+        //todo #5 check in view Model
         emailEditText.addTextChangedListener(afterTextChangedListener)
         passwordEditTextFirst.addTextChangedListener(afterTextChangedListener)
         passwordEditTextSecond.addTextChangedListener(afterTextChangedListener)
