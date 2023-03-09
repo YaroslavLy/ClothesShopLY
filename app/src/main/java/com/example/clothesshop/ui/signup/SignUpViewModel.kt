@@ -25,19 +25,6 @@ class SignUpViewModel @Inject constructor(private val signUpRepository: SignUpRe
     val signupResult: LiveData<Boolean> = _signupResult
 
 
-    init {
-        viewModelScope.launch {
-            withContext(Dispatchers.IO){
-                // run read - write (ex. write read DB)
-            }
-
-            withContext(Dispatchers.Default){
-                // run важкі math  operation
-            }
-        }
-    }
-
-
      fun signUp(username: String, password: String){
         //_signupResult.value =
             signUpRepository.signUp(username,password).onEach { resource ->

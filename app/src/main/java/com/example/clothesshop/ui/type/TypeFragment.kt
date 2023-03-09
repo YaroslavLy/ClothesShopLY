@@ -23,6 +23,8 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class TypeFragment : Fragment() {
 
+    //todo #4 add filter
+
     private var _binding: FragmentTypeListBinding? = null
     private val binding get() = _binding!!
 
