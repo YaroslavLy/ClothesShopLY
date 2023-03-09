@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
@@ -14,7 +15,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.clothesshop.GlideApp
 import com.example.clothesshop.R
-import com.example.clothesshop.data.ProductRepository
+import com.example.clothesshop.data.product.ProductRepository
 import com.example.clothesshop.databinding.FragmentProductDetailsBinding
 import com.example.clothesshop.model.Product
 import com.example.clothesshop.model.ProductBasket
@@ -23,15 +24,19 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class ProductDetailsFragment:Fragment(R.layout.fragment_product_details) {
+
+    //todo #3 create check use recycler view
 
     private var _binding:FragmentProductDetailsBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var auth: FirebaseAuth
 
+    private val viewModel: ProductViewModel by viewModels()
 
 
     override fun onCreateView(
@@ -54,7 +59,7 @@ class ProductDetailsFragment:Fragment(R.layout.fragment_product_details) {
 
 
         // TODO replace
-        var viewModel = ProductViewModel(productRepository = ProductRepository(""))
+        //var viewModel = ProductViewModel(productRepository = ProductRepository(""))
 
 
 
@@ -75,6 +80,7 @@ class ProductDetailsFragment:Fragment(R.layout.fragment_product_details) {
 
     }
 
+    //todo #6 remove
     private fun updateUiWithProduct(product: Product, view: View) {
         Log.i("Ok22", product.code.toString())
         Log.i("TAG0101", product.toString())

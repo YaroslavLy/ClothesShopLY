@@ -1,9 +1,11 @@
-package com.example.clothesshop.data
+package com.example.clothesshop.data.product
 
 import android.util.Log
-import com.example.clothesshop.utils.Constants
+import com.example.clothesshop.data.Resource
+import com.example.clothesshop.data.Result
 import com.example.clothesshop.model.Product
 import com.example.clothesshop.model.ProductBasket
+import com.example.clothesshop.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
@@ -15,11 +17,10 @@ import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import java.lang.Exception
+import javax.inject.Inject
 
-// todo #7 create repo and source
-class ProductRepository(val path: String="") {
-
-    fun getProducts(path: String) : Flow<Resource<Product>> = callbackFlow  {
+class ProductSourceImp @Inject constructor() :ProductSource {
+    override fun getProducts(path: String): Flow<Resource<Product>> = callbackFlow  {
         val fbDB = FirebaseDatabase.getInstance().getReference(Constants.COLLECTION_PRODUCTS+"$path")
         val postListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -32,7 +33,7 @@ class ProductRepository(val path: String="") {
                             name = item.name,
                             price = item.price,
                             code = item.code,
-                            in_bascked = item.in_bascked,
+                            inBasked = item.inBasked,
                             type = item.type,
                             description = item.description
                         )
@@ -52,8 +53,7 @@ class ProductRepository(val path: String="") {
         }
     }
 
-
-    fun getProduct(id: String,path: String): Flow<Resource<Product>> = callbackFlow{
+    override fun getProduct(id: String, path: String): Flow<Resource<Product>> = callbackFlow{
         val fbDB = FirebaseDatabase.getInstance().getReference(Constants.COLLECTION_PRODUCTS+"$path")
         val postListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -66,7 +66,7 @@ class ProductRepository(val path: String="") {
                             name = item.name,
                             price = item.price,
                             code = item.code,
-                            in_bascked = item.in_bascked,
+                            inBasked = item.inBasked,
                             type = item.type,
                             description = item.description
                         )
@@ -89,7 +89,7 @@ class ProductRepository(val path: String="") {
 
     //todo add UserDataSource in constructor
     private lateinit var auth: FirebaseAuth
-    fun getProductsBasket(): Flow<Result<ProductBasket>> = callbackFlow {
+    override fun getProductsBasket(): Flow<Result<ProductBasket>> = callbackFlow {
         auth = Firebase.auth
         val user= auth.currentUser
         val userId = user?.uid
@@ -107,7 +107,7 @@ class ProductRepository(val path: String="") {
                             name = item.name,
                             price = item.price,
                             code = item.code,//get key
-                            in_bascked = item.in_bascked,
+                            inBasked = item.inBasked,
                             type = item.type,
                             description = item.description
                         )

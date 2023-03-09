@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_basketFragment2_to_productDetailsFragment2"
             app:destination="@id/productDetailsFragment2" />
+        <action
+            android:id="@+id/action_basketFragment2_to_home_graph"
+            app:destination="@id/home_graph" />
     </fragment>
     <fragment
         android:id="@+id/productDetailsFragment2"
@@ -24,4 +27,5 @@
             app:argType="string"
             android:defaultValue="null" />
     </fragment>
+    <include app:graph="@navigation/home_graph" />
 </navigation>

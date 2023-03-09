@@ -10,7 +10,7 @@ class BasketRepository @Inject constructor(private val basketSource: BasketSourc
 
     fun getProducts(): Flow<Result<ProductBasket>> = basketSource.getProducts()
 
-    fun getCountProductsInBasket(): Flow<Int> = basketSource.getCountProductsInBasket()
+    fun getCountProductsInBasket(): Flow<Result<Int>> = basketSource.getCountProductsInBasket()
 
     fun removeProductInBasket(productBasket: ProductBasket) =
         basketSource.removeProductInBasket(productBasket)

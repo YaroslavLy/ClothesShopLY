@@ -12,9 +12,7 @@
         tools:layout="@layout/fragment_type_list" >
         <action
             android:id="@+id/action_typeFragment2_to_productFragment3"
-            app:destination="@id/productFragment3"
-            app:popEnterAnim="@anim/side_in"
-            app:popExitAnim="@anim/side_out" />
+            app:destination="@id/productFragment3" />
     </fragment>
     <fragment
         android:id="@+id/productFragment3"

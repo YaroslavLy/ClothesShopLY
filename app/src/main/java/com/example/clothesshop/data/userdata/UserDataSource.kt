@@ -1,4 +1,4 @@
-package com.example.clothesshop.data
+package com.example.clothesshop.data.userdata
 
 interface UserDataSource {
 

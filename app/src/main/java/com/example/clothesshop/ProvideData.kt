@@ -7,6 +7,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 
+//todo delete
 class ProvideData {
     companion object{
         fun getData():List<Product>{
@@ -17,7 +18,7 @@ class ProvideData {
                     name = "Kurtka damska MERIDA beżowa Dstreet",
                     code = "TY2961",
                     price = "189,99 zł",
-                    in_bascked = true,
+                    inBasked = true,
                     type = "W"
                 )
             )
@@ -27,7 +28,7 @@ class ProvideData {
                     name = "Kurtka męska skórzana czarna Dstreet",
                     code = "TX4246",
                     price = "159,99 zł",
-                    in_bascked = false,
+                    inBasked = false,
                     type = "M"
 
                 )
@@ -38,7 +39,7 @@ class ProvideData {
                     name = "Kurtka męska granatowa Dstreet",
                     code = "TX4119",
                     price = "159,99 zł",
-                    in_bascked = true,
+                    inBasked = true,
                     type = "M"
                 )
             )
@@ -48,7 +49,7 @@ class ProvideData {
                     name = "Kurtka męska skórzana czarna Dstreet",
                     code = "TX3464",
                     price = "89,99 zł",
-                    in_bascked = false,
+                    inBasked = false,
                     type = "M"
                 )
             )

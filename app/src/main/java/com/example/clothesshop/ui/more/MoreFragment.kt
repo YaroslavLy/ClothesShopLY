@@ -19,6 +19,7 @@ class MoreFragment : Fragment() {
 
     private lateinit var adapter: MoreRecyclerViewAdapter
 
+    //todo replace
     private val moreList =
         mutableListOf(
             MoreItem(1, R.drawable.ic_more_orders, "Historia Zamówień"),

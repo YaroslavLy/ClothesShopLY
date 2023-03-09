@@ -6,6 +6,7 @@ import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.clothesshop.R
@@ -17,9 +18,12 @@ import com.example.clothesshop.databinding.FragmentTypeListBinding
 import com.example.clothesshop.utils.Constants
 import com.example.clothesshop.model.Type
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class TypeFragment : Fragment() {
+
+    //todo #4 add filter
 
     private var _binding: FragmentTypeListBinding? = null
     private val binding get() = _binding!!
@@ -27,7 +31,7 @@ class TypeFragment : Fragment() {
     private lateinit var typeRecyclerViewAdapter: TypeRecyclerViewAdapter
     private val mainViewModel: MainViewModel by activityViewModels()
 
-    private lateinit var typeViewModel: TypeViewModel
+    private val typeViewModel: TypeViewModel by viewModels()
     private var data = ArrayList<Type>()
     private var checkedItem = 5
     private var checkItemName = "all"
@@ -52,11 +56,7 @@ class TypeFragment : Fragment() {
 //        Log.i("Test0112",type.toString())
         //category = "All"
 
-        typeViewModel =
-            ViewModelProvider(
-                this,
-                TypeViewModelFactory(category)
-            )[TypeViewModel::class.java]
+
 
         mainViewModel.сategoryFormState.observe(viewLifecycleOwner, Observer { typeRes ->
             if (typeRes == null) {

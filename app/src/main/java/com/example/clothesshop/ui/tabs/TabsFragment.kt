@@ -7,6 +7,7 @@ import android.view.MenuItem
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment
@@ -28,7 +29,7 @@ class TabsFragment : Fragment(R.layout.fragment_tabs) {
     lateinit  var bottomNavigationView: BottomNavigationView
 
 
-    private val tabsViewModel by viewModels<TabsViewModel>()
+    private val tabsViewModel by activityViewModels<TabsViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,7 +62,7 @@ class TabsFragment : Fragment(R.layout.fragment_tabs) {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(item.itemId== R.id.menu_logout)
         {
-            Firebase.auth.signOut()
+            tabsViewModel.logOut()
             findNavController().navigate(R.id.action_tabsFragment_to_loginFragment)
         }
 
@@ -69,13 +70,12 @@ class TabsFragment : Fragment(R.layout.fragment_tabs) {
     }
 
 
-    fun updateBadge(count: Int) {
+    private fun updateBadge(count: Int) {
         bottomNavigationView = activity?.findViewById<BottomNavigationView>(R.id.bottomNavigationView)!!
         val badge = bottomNavigationView.getOrCreateBadge(R.id.basket_graph)
         badge.isVisible = true
         badge.number = count
-        if(count == 0)
-            badge.isVisible=false
+        if(count == 0) badge.isVisible=false
         badge.backgroundColor = context?.let { ContextCompat.getColor(it, R.color.green) }!!
     }
 

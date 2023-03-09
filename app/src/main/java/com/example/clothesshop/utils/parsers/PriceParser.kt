@@ -15,7 +15,11 @@ class PriceParser {
             for (l in list){
                 sum += strPriceToDouble(l)
             }
-            return "$sum ZŁ".replace('.',',')
+               // .substring(0,index+3) +"ZŁ"
+            //val index = PriceParser.sumPrise(listPrice).indexOf(',')
+            //val notFormattedResult =
+            val result = String.format("%.2f", sum)
+            return "$result ZŁ".replace('.',',')
         }
     }
 

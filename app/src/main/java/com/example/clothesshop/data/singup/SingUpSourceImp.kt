@@ -1,23 +1,18 @@
-package com.example.clothesshop.data
+package com.example.clothesshop.data.singup
 
 import android.util.Log
-import android.widget.Toast
-import com.example.clothesshop.model.Category
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.channels.awaitClose
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-// todo #8 create repo and source
-class SignUpRepository {
+class SingUpSourceImp @Inject constructor() : SingUpSource {
+
     private lateinit var auth: FirebaseAuth
-
-     fun signUp(username: String, password: String): Flow<Boolean> = callbackFlow {
+    override fun signUp(username: String, password: String): Flow<Boolean> = callbackFlow {
         auth = Firebase.auth
 
         auth.createUserWithEmailAndPassword(username, password)
@@ -42,8 +37,8 @@ class SignUpRepository {
             }
 
 
-         awaitClose {
-             close()
-         }
+        awaitClose {
+            close()
+        }
     }
 }

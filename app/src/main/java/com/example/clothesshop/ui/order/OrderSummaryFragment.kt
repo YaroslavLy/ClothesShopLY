@@ -7,13 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.example.clothesshop.data.OrderRepository
-import com.example.clothesshop.data.basket.BasketRepository
-import com.example.clothesshop.data.basket.BasketSourceImp
+import com.example.clothesshop.data.order.OrderRepository
 import com.example.clothesshop.databinding.FragmentOrderSummaryBinding
 import com.example.clothesshop.model.Order
 import com.example.clothesshop.model.ProductBasket
@@ -21,8 +20,6 @@ import com.example.clothesshop.ui.basket.BasketViewModel
 import com.example.clothesshop.utils.Constants
 import com.example.clothesshop.utils.parsers.PriceParser
 import dagger.hilt.android.AndroidEntryPoint
-import java.time.LocalDate
-import java.time.LocalDateTime
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -62,7 +59,8 @@ class OrderSummaryFragment : Fragment() {
     private var _binding: FragmentOrderSummaryBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var orderViewModel: OrderViewModel
+
+    private val orderViewModel: OrderViewModel by activityViewModels()
     private var data = ArrayList<ProductBasket>()
     private var textNames = ""
     private var textPrices = ""
@@ -97,17 +95,17 @@ class OrderSummaryFragment : Fragment() {
         cardDateChange()
         cardCVCChange()
 
-        orderViewModel = OrderViewModel(OrderRepository())
+        //orderViewModel = OrderViewModel(OrderRepository())
 
         basketViewModel.getProductsFromBasket()
-        basketViewModel.basketProductFormState.observe(
-            viewLifecycleOwner,
-            Observer { productBasket ->
-                if (productBasket == null) {
-                    return@Observer
-                }
-                updateUiWithProduct(productBasket)
-            })
+//        basketViewModel.basketProductFormState.observe(
+//            viewLifecycleOwner,
+//            Observer { productBasket ->
+//                if (productBasket == null) {
+//                    return@Observer
+//                }
+//                updateUiWithProduct(productBasket)
+//            })
 
 
 

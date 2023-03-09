@@ -13,8 +13,9 @@ import androidx.navigation.fragment.findNavController
 import com.example.clothesshop.R
 import com.example.clothesshop.databinding.FragmentBasketBinding
 import com.example.clothesshop.databinding.FragmentOrderBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class OrderFragment : Fragment() {
 
     private var _binding: FragmentOrderBinding? = null

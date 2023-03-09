@@ -71,7 +71,7 @@ class ProductRecyclerViewAdapter(
 //            }
         }
         //if (ifElementInBasket(porductItem)) {
-        if (productItem.in_bascked == true) {
+        if (productItem.inBasked == true) {
             holder.buttonBasket.setImageResource(R.drawable.ic_baseline_shopping_cart_24_2)
         }
 //        else{

@@ -7,26 +7,26 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.clothesshop.R
 import com.example.clothesshop.databinding.FragmentBasketBinding
 import com.example.clothesshop.model.ProductBasket
 import com.example.clothesshop.ui.tabs.TabsFragmentDirections
-import com.example.clothesshop.utils.parsers.PriceParser
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class BasketFragment : Fragment() {
-    private var data = ArrayList<ProductBasket>()
-
     private lateinit var adapter: BasketRecyclerViewAdapter
 
     private var _binding: FragmentBasketBinding? = null
     private val binding get() = _binding!!
-
-    private var countProductsInBasketmy =0
 
     private val basketViewModel by viewModels<BasketViewModel>()
 
@@ -37,6 +37,8 @@ class BasketFragment : Fragment() {
         (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         _binding = FragmentBasketBinding.inflate(inflater, container, false)
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.viewModel = basketViewModel
 
         return binding.root
     }
@@ -47,12 +49,10 @@ class BasketFragment : Fragment() {
         binding.listProductBasket.layoutManager =
             LinearLayoutManager(context)
 
-        //todo #18 use the transfer of functions to the constructor
+
         adapter = BasketRecyclerViewAdapter(object : ProductBasketActionListener {
             override fun onProductDelete(productBasket: ProductBasket) {
                 basketViewModel.removeProductFromBasket(productBasket)
-                data.remove(productBasket)
-                updateData()
             }
 
             override fun onProductDetails(productBasket: ProductBasket) {
@@ -65,30 +65,24 @@ class BasketFragment : Fragment() {
             }
         })
 
+
         binding.listProductBasket.adapter = adapter
 
-        basketViewModel.getProductsFromBasket()
-        basketViewModel.basketProductFormState.observe(
-            viewLifecycleOwner,
-            Observer { productBasket ->
-                if (productBasket == null) {
-                    return@Observer
+        lifecycleScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED){
+                basketViewModel.productsBasketState.collect(){
+                    adapter.submitList(it)
                 }
-                updateUiWithProduct(productBasket)
-            })
-
-
-        basketViewModel.tabsFormState.observe(viewLifecycleOwner, Observer { countProductsInBasket ->
-            if (countProductsInBasket == null) {
-                return@Observer
             }
-            countProductsInBasketmy = countProductsInBasket
-            updateData()
-        })
+        }
 
-        //todo move check if anonymous in repo
+        binding.addProduct.setOnClickListener {
+            findNavController().clearBackStack(R.navigation.home_graph)
+            findNavController().navigate(R.id.action_basketFragment2_to_home_graph)
+            //todo select bottom menu active category after navigate
+        }
+
         binding.order.setOnClickListener {
-
 
             val navHostFragment = parentFragment as NavHostFragment?
             val parent = navHostFragment!!.parentFragment
@@ -100,42 +94,6 @@ class BasketFragment : Fragment() {
     }
 
 
-    private fun updateData(){
-        updatePriceData()
-        updateListData()
-    }
-
-    private fun updatePriceData() {
-        if (countProductsInBasketmy == 0) {
-            binding.sumPrice.text = "0,0 ZŁ"
-            binding.order.isEnabled = false
-            return
-        }
-
-        val listPrice = mutableListOf<String>()
-        for (s in data) {
-            s.price?.let { listPrice.add(it) }
-        }
-        binding.sumPrice.text = PriceParser.sumPrise(listPrice)
-        binding.order.isEnabled = true
-    }
-
-    private fun updateListData() {
-        if (countProductsInBasketmy == 0)
-            data = ArrayList<ProductBasket>()
-
-        adapter.productsBasket = data.toMutableList()
-    }
-
-    private fun updateUiWithProduct(product: ProductBasket) {
-        if (!data.contains(product)) {
-            data.add(product)
-            updateData()
-        }
-        binding.order.isEnabled = countProductsInBasketmy != 0
-        // todo replace change background (bind to countProductsInBasketmy )
-        //binding.listProductBasket.background = Color.WHITE.toDrawable()
-    }
 
 }
 
